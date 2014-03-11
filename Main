@@ -1,0 +1,23 @@
+[y,fs] = wavread('Morceau.wav');
+y = y(:,1);
+
+[x] = wavread('Chrom1.5.wav');
+x = x(:,1);
+
+wlen = 0.05*fs; % Fenetre de 50ms
+W = makeW(x, fs, wlen, wlen/4,45); % à ne faire que la première fois of course
+
+%imagesc(db(abs(W)));
+%axis xy;
+%title('W chromatique');
+
+Y = tfct(y,fs,wlen,wlen/4,0);
+
+Y(Y==0)=0.00001;
+W(W==0)=0.00001;
+
+H = nmf(abs(Y),abs(W));
+
+imagesc(H);
+axis xy;
+title('H calculé');
