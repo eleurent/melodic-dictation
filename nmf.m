@@ -1,12 +1,16 @@
-function H = nmf(V, W)
+function H = nmf(V, W, n, display)
 H = ones(size(W,2),size(V,2));
-
-% Je passe à 100 itérations
-
-for t=1:100 
+for t=1:n 
     H = H.*(W'*(V./(W*H)))./repmat(sum(W)',1,size(H,2));
-    D = kullback_divergence(V,W*H);
-    disp(D);
+    if display
+        D = kullback_divergence(V,W*H);
+        disp(D);
+    end
+end
+if display
+    imagesc(H);
+    axis xy;
+    title('H calcul�');
 end
 end
 
