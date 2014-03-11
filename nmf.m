@@ -1,6 +1,9 @@
 function H = nmf(V, W)
 H = ones(size(W,2),size(V,2));
-for t=1:10
+
+% Je passe à 100 itérations
+
+for t=1:100 
     H = H.*(W'*(V./(W*H)))./repmat(sum(W)',1,size(H,2));
     D = kullback_divergence(V,W*H);
     disp(D);
