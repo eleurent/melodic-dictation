@@ -5,9 +5,9 @@ v = v(:,1);
 [x] = wavread('Chrom1.5.wav');
 x = x(:,1);
 
-%CrÃ©ation de W
+%Création de W
 wlen = 0.05*fs; % Fenetre de 50ms
-W = makeW(x, fs, wlen, wlen/4,45); % Ã  ne faire que la premiÃ¨re fois of course
+W = makeW(x, fs, wlen, wlen/4,45); % A ne faire que la première fois of course
 
 %imagesc(db(abs(W)));
 %axis xy;
@@ -23,4 +23,4 @@ H = nmf(abs(V),abs(W));
 
 imagesc(H);
 axis xy;
-title('H calculÃ©');
+title('H calculé');
