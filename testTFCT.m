@@ -1,3 +1,4 @@
+%Fonction inutile maintenant, main a pris la place
 %[x, fs] = wavread('sample.wav');
 fs = 44100;
 x = zeros(2*fs,1);
