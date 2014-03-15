@@ -1,15 +1,15 @@
-function H = nmf(V, W, n, display)
+function H = nmf(V, W, n, display, fs, wstep, numero2note)
 H = ones(size(W,2),size(V,2));
-epsilon = ones(size(V))*0.00000001;
 for t=1:n 
-    H = H.*(W'*(V./(W*H + epsilon)))./repmat(sum(W)',1,size(H,2));
+    H = H.*(W'*((V + eps)./(W*H + eps)))./repmat(sum(W)',1,size(H,2));
     if display
-        D = kullback_divergence(V + epsilon, W*H + epsilon);
+        D = kullback_divergence(V + eps, W*H + eps);
         disp(D);
     end
 end
 if display
-    imagesc(H);
+    figure;
+    imagesc((1:size(H,2))*wstep/fs, (1:size(H,1))+numero2note, H);
     axis xy;
     title('H calculé');
 end
