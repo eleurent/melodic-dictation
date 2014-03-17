@@ -1,4 +1,4 @@
-function H_midi = H_to_midi(H, fs, wstep, numero2note, write, path)
+function H_midi = H_to_midi(H, min_peak_height, fs, wstep, numero2note, write, path)
 % Filtrage
 Hf = filter(1,[1 -0.9],H,[],2);
 % Dérivation
@@ -8,7 +8,7 @@ M = zeros(0, 4);
 warning('off', 'signal:findpeaks:largeMinPeakHeight');
 for note=1:size(H,1)
     % Attaques
-    [pks,locs] = findpeaks(dH(note,:), 'MINPEAKHEIGHT', 8, 'MINPEAKDISTANCE', 25);
+    [pks,locs] = findpeaks(dH(note,:), 'MINPEAKHEIGHT', min_peak_height, 'MINPEAKDISTANCE', 25);
     % Fins de note
     ends = find_note_endings(Hf(note,:), locs, 0.8);
     % Supression des notes courtes
