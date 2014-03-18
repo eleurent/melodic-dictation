@@ -1,0 +1,27 @@
+function f_mesure = f_mesure(morceau, H_midi, margin)
+ref=readmidi(['sound/' morceau '.mid']);
+ref_Notes=midiInfo(ref,0); 
+H_Notes=midiInfo(H_midi,0);
+
+fn=[];
+fp=[];
+vp=[];
+
+
+for i = 1:size(ref_Notes,1)
+    note = ref_Notes(i,3);
+    start_time = ref_Notes(i,5);
+    indices = find((H_Notes(:,5) > start_time - margin) & (H_Notes(:,5) < start_time + margin) & (H_Notes(:,3) == note));
+    if isEmpty(indices)
+        fn = [fn i];
+    else
+        vp = [vp [i;indices(1)]];
+        H_Notes(indices(1),5) = -inf;
+    end
+    
+    
+end
+fp = find(
+
+
+end

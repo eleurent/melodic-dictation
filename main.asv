@@ -23,8 +23,7 @@ H = nmf(abs(V), abs(W), 100);
 plot_image((1:size(H,2))*wstep/fs, (1:size(H,1))+numero2note, H, axes, 'H calculé');
 
 % Filtrage et conversion en midi
-H_midi = H_to_midi(H, 20, fs, wstep, numero2note, 1, ['sound/' morceau '_out.mid']);
+H_midi = H_to_midi(H, 3, fs, wstep, numero2note, 1, ['sound/' morceau '_out.mid']);
 draw_midi(H_midi, axes, 'H filtré');
 
 %Calcul de f_mesure
-[f_m, R, P, fn, fp, vp] = f_mesure(morceau, H_midi, 0.05);
