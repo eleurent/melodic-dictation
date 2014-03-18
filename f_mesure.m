@@ -1,6 +1,5 @@
-function [f_m, R, P, fn, fp, vp] = f_mesure(morceau, H_midi, margin)
-ref=readmidi(['sound/' morceau '.mid']);
-ref_Notes=midiInfo(ref,0); 
+function [f_m, R, P, fn, fp, vp] = f_mesure(ref_midi, H_midi, margin)
+ref_Notes=midiInfo(ref_midi,0);
 H_Notes=midiInfo(H_midi,0);
 
 fn=[];
