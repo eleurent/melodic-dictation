@@ -1,8 +1,9 @@
+function [] = melodic_dictation(input_file)
+
 %% Lecture des pistes
-morceau = 'tetris';
 [x] = wavread('sound/Chrom1.5.wav');
-[v,fs] = wavread(['sound/' morceau '.wav']);
-ref_midi = readmidi(['sound/' morceau '.mid']);
+[v,fs] = wavread(['sound/' input_file '.wav']);
+ref_midi = readmidi(['sound/' input_file '.mid']);
 x = x(:,1);
 v = v(:,1);
 
@@ -22,7 +23,7 @@ H = nmf(abs(V), abs(W), 100);
 
 %% Filtrage et conversion en midi
 %H_midi = H_to_midi(H, 20, fs, wstep, numero2note, 1, ['sound/' morceau '_out.mid']);
-[H_midi, min_peak_height] = automatic_H_to_midi(H, ref_midi, fs, wstep, numero2note, 1, ['sound/' morceau '_out.mid']);
+[H_midi, min_peak_height] = automatic_H_to_midi(H, ref_midi, fs, wstep, numero2note, 1, ['sound/' input_file '_out.mid']);
 
 %% Calcul de precision/rappel
 [f_m, R, P, fn, fp, vp] = f_mesure(ref_midi, H_midi, 0.05);
